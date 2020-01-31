@@ -1,0 +1,88 @@
+
+<div style="color: black">
+   
+        <div class="form-group row" style="margin-left:670px">
+          
+            <input type="text" class="form-control col-sm-6" (keyup)="onQuickFilterChanged()" 
+            [(ngModel)]="quickSearchValue" placeholder="quick filter..." /> &nbsp;&nbsp;
+          <button type="button" class="btn btn-success" (click)="enableModuleDiv()">
+              <span class="glyphicon glyphicon-plus"></span> Add User
+            </button>
+            <!--<button type="button" class="btn btn-info" (click)="updateItems()">
+              <span class="glyphicon glyphicon-pencil"></span> Update
+            </button>
+            <button type="button" class="btn btn-danger" (click)="onRemoveSelected()">
+              <span class="glyphicon glyphicon-trash"></span> Delete
+            </button>-->
+        </div>
+        <div class="form-group row">
+        <ag-grid-angular 
+            style="width: 950px; height: 200px;" 
+            class="ag-theme-fresh"
+            [enableSorting]="true"
+            [enableFilter]="true"
+            [rowData]="rowData" 
+            [pagination]="true"
+            [paginationPageSize]="6"
+            rowSelection="single"           
+            (rowClicked)='onRowClicked($event)'
+            enableColResize
+            (gridReady)="onGridReady($event)"
+            [columnDefs]="columnDefs">
+        </ag-grid-angular>
+        </div>
+        
+          <div class="module card" *ngIf="showModuleDiv">
+            
+            <form [formGroup]="appForm" class="form-group" (ngSubmit)="login()" class="border rounded" style="padding: 10px 10px 10px 10px">
+          
+        <div class="form-group row"><label for="inputEmail4" class="col-sm-2">Email</label> 
+            <div class="col-sm-3"> <input class="form-control"  placeholder="" formControlName="usr_email"></div>
+            
+            <label for="inputEmail4" class="col-sm-2">Password</label> 
+            <div class="col-sm-3"> <input class="form-control"  placeholder="" formControlName="password"></div>
+            </div>
+            <div class="form-group row"><label for="inputEmail4" class="col-sm-2">First Name</label> 
+              <div class="col-sm-3">    <input class="form-control"  placeholder="" formControlName="first_name"></div>
+          
+          <label for="inputEmail4" class="col-sm-2">Last Name</label> 
+              <div class="col-sm-3">    <input class="form-control"  placeholder="" formControlName="last_name"></div>
+          </div>
+          
+          <div class="form-group row"><label for="inputEmail4" class="col-sm-2">Mobile</label> 
+          
+            <div class="col-sm-3">    <input class="form-control"  placeholder="" formControlName="phone_number"></div>
+        
+        <label for="inputEmail4" class="col-sm-2">City</label> 
+            <div class="col-sm-3">    <input class="form-control"  placeholder="" formControlName="city"></div>
+        </div>
+
+        <div class="form-group row"><label for="inputEmail4" class="col-sm-2">Status</label> 
+            <div class="col-sm-3">    <input class="form-control"  placeholder="" formControlName="usr_status"></div>
+        </div>
+        <div class="form-group row">
+            <label for="inputEmail4" class="col-sm-2">Association</label> 
+
+        <div class="association form-control">
+                <div *ngFor="let r of rolesData" style=" float:left; position:relative;padding-left: 5px">
+                      <div *ngIf="r.checked">  <input type="checkbox" id="{{r.role_key}}" checked (change)="chkboxHandle(r)"> {{r.role_name | uppercase}}</div>
+                      <div *ngIf="!r.checked">  <input type="checkbox" id="{{r.role_key}}" (change)="chkboxHandle(r)"> {{r.role_name | uppercase}}</div>
+                 </div>
+            
+        </div>
+    </div>
+
+            
+          
+       
+              <div class="col-sm-2">
+                    <button type="button" class="{{ buttonClass }}" (click)="addData()">
+                             {{buttonText}}
+                          </button>
+               
+                        </div>
+            </form>
+          </div>
+        </div>
+        
+        

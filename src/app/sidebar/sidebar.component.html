@@ -1,0 +1,87 @@
+
+<div class="sidebar-wrapper">
+  <div class="logo">
+    <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+      <div class="logo-image-small">
+        <img src="assets/img/angular2-logo.png">
+      </div>
+    </a>
+    <a href="https://www.creative-tim.com" class="simple-text logo-normal">
+      CIPHER LOGO
+    </a>
+  </div>
+
+
+  <div class="nested-menu">
+      <ul class="nav">
+          <li> <a (click)="addExpandClass('pages')">
+        <i class="fa fa-plus"></i><p>User Management</p>
+    </a></li>
+    <li class="nested" [class.expand]="showMenu === 'pages'">
+        <ul class="submenu">
+            <li routerLinkActive="active" class=''>
+                <a routerLink="/appusers" >
+                    <i class="fa fa-monument"></i>&nbsp;
+                    <span>&nbsp;Users</span>
+                </a>
+            </li>
+            <li routerLinkActive="active" class=''>
+                <a routerLink="/approles" >
+                    <i class="fa fa-monument"></i>&nbsp;
+                    <span>&nbsp;Roles</span>
+                </a>
+            </li>
+            <li routerLinkActive="active" class=''>
+                <a routerLink="/apppages" >
+                    <i class="fa fa-monument"></i>&nbsp;
+                    <span>&nbsp;Modules</span>
+                </a>
+            </li>
+        </ul>
+    </li></ul>
+</div>
+
+
+    <ul class="nav">
+        <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">
+            <a [routerLink]="[menuItem.path]">
+                <i class="nc-icon {{menuItem.icon}}"></i>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+    </ul>
+
+    
+
+    <div class="nested-menu">
+        <ul class="nav">
+            <li> <a (click)="addExpandClass('pages1')">
+          <i class="fa fa-plus"></i><p>Master Data</p>
+      </a></li>
+      <li class="nested" [class.expand]="showMenu === 'pages1'">
+          <ul class="submenu">
+              <li routerLinkActive="active" class=''>
+                  <a routerLink="/calbank" >
+                      <i class="fa fa-monument"></i>&nbsp;
+                      <span>&nbsp;Calorie Bank</span>
+                  </a>
+              </li>
+              <li routerLinkActive="active" class=''>
+                  <a routerLink="/calbankref" >
+                      <i class="fa fa-monument"></i>&nbsp;
+                      <span>&nbsp;References</span>
+                  </a>
+              </li>
+              
+          </ul>
+      </li></ul>
+  </div>
+
+
+
+
+
+
+
+
+</div>
