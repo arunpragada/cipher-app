@@ -21,6 +21,7 @@ import { DietchartoutComponent } from '../../pages/dietchartout/dietchartout.com
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IgxExpansionPanelModule,IgxTabsModule } from 'igniteui-angular';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     AgGridModule.withComponents([]),
     IgxExpansionPanelModule,
     IgxTabsModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   declarations: [
     DashboardComponent,

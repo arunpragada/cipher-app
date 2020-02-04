@@ -33,12 +33,12 @@ export class LoginComponent implements OnInit {
         
       var postData = 'myData=' + JSON.stringify(this.appForm.value);
     const options = {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}};
-this.http.post(Constants.API_ENDPOINT+"/admin_ctrl.php/checkuser", postData, options).subscribe(
+this.http.post(Constants.API_ENDPOINT_1+"/admin_ctrl.php/checkuser", postData, options).subscribe(
     (t) => {console.log(t);
         this.res=t;
         console.log("Val="+this.res)
     if(this.res.operation === "Y"){
-        console.log('Login success==')
+         console.log('Login success==')
         localStorage.setItem('isLoggedin', 'true');
         localStorage.setItem('userData',JSON.stringify(this.res))
         this.router.navigate(['/notifications']);
@@ -48,7 +48,8 @@ this.http.post(Constants.API_ENDPOINT+"/admin_ctrl.php/checkuser", postData, opt
     }
     
     }
-)};
+)
+};
     
     
 }

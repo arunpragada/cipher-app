@@ -1,1 +1,98 @@
-<p>calbankref works!</p>
+
+<div style="color: black">
+    <div class="form-group row" style="margin-left:530px">
+    <input type="text" class="form-control col-sm-4" (keyup)="onQuickFilterChanged()" 
+    [(ngModel)]="quickSearchValue" placeholder="quick filter..." /> &nbsp;&nbsp;
+  <button type="button" class="btn btn-success" (click)="enableModuleDiv()">
+      <span class="glyphicon glyphicon-plus"></span> Add Item
+    </button>
+    <!--<button type="button" class="btn btn-info" (click)="updateItems()">
+      <span class="glyphicon glyphicon-pencil"></span> Update
+    </button>
+    <button type="button" class="btn btn-danger" (click)="onRemoveSelected()">
+      <span class="glyphicon glyphicon-trash"></span> Delete
+    </button>-->
+</div>
+<div class="form-group row">
+<ag-grid-angular 
+    style="width: 955px; height: 200px;" 
+    class="ag-theme-fresh"
+    sortable="true"
+    filter="true"
+    [rowData]="rowData" 
+    [pagination]="true"
+    [paginationPageSize]="6"
+    rowSelection="single"    
+    (rowClicked)='onRowClicked($event)'
+    resizable="true"
+    (gridReady)="onGridReady($event)"
+    [columnDefs]="columnDefs">
+</ag-grid-angular>
+</div>
+  <div class="module card" *ngIf="showModuleDiv">
+    
+    <form [formGroup]="appForm" class="form-group" (ngSubmit)="login()" class="border rounded" style="padding: 10px 10px 10px 10px">
+  
+<div class="form-group row"><label for="inputEmail4" class="col-sm-2">Food Item</label> 
+    <div class="col-sm-4"> <input class="form-control" type="moduleName" placeholder="" formControlName="food_item"></div>
+    </div>
+   
+<div class="form-group row"><label for="inputEmail4" class="col-sm-2">Select Item</label> 
+    <div class="col-sm-4"> 
+        
+        <ng-multiselect-dropdown
+        [placeholder]="'Select Item'"
+        [data]="dropdownList"
+        formControlName="selectedItems"
+        [settings]="dropdownSettings"
+        (onSelect)="onItemSelect($event)"
+        (onDeSelect)="OnItemDeSelect($event)"
+        [(ngModel)]="sItems"
+      >
+      </ng-multiselect-dropdown>
+
+  
+  
+        
+    </div>
+   
+    <div class="container">
+    <table class="table table-striped">
+      <thead>
+          <tr>
+            <th>Item</th>
+            <th>Weight</th>
+            <th>Protien</th>
+            <th>C.B.H</th>
+            <th>Fat</th>
+            <th>Calorie</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of characters">
+          <td>{{ c.food_item }}</td>
+          <td>{{ c.raw_weight }}&nbsp;{{ c.weight_measure }}</td>
+          <td>{{ c.protein }}</td>
+          <td>{{ c.carbohydrates }}</td>
+          <td>{{ c.fat }}</td>
+          <td>{{ c.calorie }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+    </div>
+
+
+   
+      <div class="col-sm-2">
+            <button type="button" class="{{ buttonClass }}" (click)="addData()">
+                     {{buttonText}}
+                  </button>
+       
+                </div>
+    </form>
+  </div>
+</div>
+
