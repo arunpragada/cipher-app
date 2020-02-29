@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {Constants } from '../../constants/constants';
-import { IDropdownSettings } from 'ng-multiselect-dropdown'
 
 @Component({
   selector: 'app-calbankref',

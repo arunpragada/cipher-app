@@ -152,7 +152,7 @@
 
     .logo{
         position: relative;
-        padding: 7px $padding-base-horizontal;
+        /*padding: 7px $padding-base-horizontal;*/
         z-index: 4;
 
         a.logo-mini,
@@ -163,7 +163,7 @@
         a.logo-mini{
             opacity: 1;
             float: left;
-            width: 34px;
+            width: 175px;
             text-align: center;
             margin-left: 10px;
             margin-right: 12px;
@@ -205,7 +205,7 @@
             color: $white-color;
             text-decoration: none;
             font-weight: $font-weight-normal;
-            line-height: 30px;
+            line-height: 70px;
             overflow: hidden;
         }
     }
@@ -303,11 +303,12 @@
      .content{
         padding: 0 30px 30px;
         min-height: calc(100vh - 123px);
-        margin-top: 93px;
+        margin-top: 60px;
     }
 
      .navbar{
         margin-bottom: 0;
+		height:20px;
     }
 
 

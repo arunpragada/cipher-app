@@ -48,6 +48,8 @@ export class NavbarComponent implements OnInit{
             return 'Calorie Bank';
             else if(titlee === "/calbankref")
             return 'Calorie Bank Reference';
+            else if(titlee === "/bmicalc")
+            return 'BMI Calculations';
       }
       return 'Dashboard';
     }

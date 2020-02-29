@@ -1,0 +1,209 @@
+<style>
+   
+    </style>
+    
+    <div class="row">
+        <div class="col-md-12">
+          <div class="card" style="color: black">
+            <form style="padding: 10px 10px 10px 10px;color:black" [formGroup]="appForm" class="form-group">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">UMR</label>
+                    <input type="text" class="form-control" id="inputEmail4" formControlName="umr" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Patient Name</label>
+                    <input type="text" class="form-control" id="inputPassword4" formControlName="name" placeholder="">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-2">
+                    <label for="inputCity">Age</label>
+                    <input type="text" class="form-control" id="inputCity" formControlName="age">
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="inputState">Gender</label>
+                    <select id="inputState" class="form-control" style="padding: 1px 1px 1px 1px;" formControlName="gender">
+                      <option selected>Choose...</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-1">
+                    <label for="inputZip">Height(cm)</label>
+                    <input type="text" class="form-control" id="h" placeholder="" formControlName="height" (change)="heightCalc()">                   
+                  </div>
+                  
+                  <div class="form-group col-md-1">
+                    <label for="inputZip">Feet</label>
+                    <input type="text" class="form-control" id="f" placeholder="" formControlName="feet">                   
+                  </div>
+                  
+                  
+                  <div class="form-group col-md-1">
+                    <label for="inputZip">Inches</label>
+                    <input type="text" class="form-control" id="i" placeholder="" formControlName="inches">                   
+                  </div>
+                  
+                  
+
+                  <div class="form-group col-md-2">
+                      <label for="inputZip">Weight</label>
+                      <input type="text" class="form-control" id="w" formControlName="weight">
+                    </div>
+                </div>
+              
+                <button type="submit" class="btn btn-primary" (click)="compute()">Compute</button>
+              </form>
+    
+    </div>
+    </div></div>  
+    
+    <!---
+    <div class="card col-md-5" >
+       
+        <div class="card-body">
+          <h5 class="card-title">BMI Calculator</h5>
+        <div class="row"><div>Weight</div><div>ABC</div></div>
+        <div class="row">Height</div>
+        <div class="row">BMI Result</div>
+        <div class="row">Ideal BMI</div>
+        <div class="row">Required Weight</div>
+        <div class="row">Required Weight Change</div>
+        <div class="row">Change Percentage</div>
+        <div class="row"><div class="col-sm-18">Ideal Calories Per Body Weight</div><div class="col-sm-4">333</div></div>
+        <div class="row">Total Required Calories</div>
+        <div class="row">Required Protein(1.5 grms/kg)</div>
+        <div class="row">Required Protein(1.2 grms/kg)</div>
+        <div class="row">Required Protein(1.0 grms/kg)</div>
+        </div>
+        
+      </div>
+    -->
+    <div class="row">
+    <div class="col-md-4">
+      <div class="">
+         
+       
+          <table class="table table-bordered roundedCorners">
+          
+              <tbody>
+                <tr>
+                    <td colspan="2"><b>BMI Calculator</b></td>
+                                   
+                </tr>
+                  <tr>
+                      <td>Weight</td>
+                      <td>{{bmiData.weight}}</td>                  
+                  </tr>
+                  <tr>
+                      <td>Height</td>
+                      <td>{{bmiData.height}}</td>                  
+                  </tr>
+                  <tr><td>BMI Result</td><td>{{bmiData.bmi_result}}</td></tr>
+                  <tr><td>Ideal BMI</td><td>{{bmiData.ideal_bmi}}</td></tr>
+                  <tr><td>Required Weight</td><td>{{bmiData.req_weight}}</td></tr>
+                  <tr><td>Required Weight Change</td><td>{{bmiData.req_weight_change}}</td></tr>
+                  <tr><td>Change Percentage</td><td>{{bmiData.change_percent}}%</td></tr>
+                 
+    
+                  <tr>
+                      <td>Ideal Calories Per Body Weight</td>
+                      <td>{{bmiData.ideal_cal_weight}}</td>                  
+                  </tr>
+                  <tr>
+                      <td>Total Required Calories</td>
+                      <td>{{bmiData.total_req_cal}}</td>                  
+                  </tr>
+                  <tr>
+                      <td>Required Protein(1.5 grms/kg)</td>
+                      <td>{{bmiData.req_pro_15}}</td>                  
+                  </tr>
+                  <tr>
+                      <td>Required Protein(1.2 grms/kg)</td>
+                      <td>{{bmiData.req_pro_12}}</td>                  
+                  </tr>
+                  <tr>
+                      <td>Required Protein(1.0 grms/kg)</td>
+                      <td>{{bmiData.req_pro_10}}</td>                  
+                  </tr>
+                  
+              </tbody>
+          </table>
+         <span style="color: black;font-size: 11px;"> * Negative Weight Change = Weight Loss Required&nbsp;&nbsp;&nbsp;&nbsp;</span>
+         <span style="color: black;font-size: 11px;"> * Positive Weight Change = Weight Gain Required</span>
+      </div>
+    
+    
+    </div>
+    
+    
+    <div class="row col-md-8" style="height: 200px">
+        <div class="">
+            <table class="table table-bordered">
+          
+                <tbody>
+                  <tr><td colspan="7"><b>Recommended Dietiery Allowances</b></td></tr>
+                    <tr>
+                      <td colspan="1"></td>
+                        <td colspan="2"><b>50%</b></td>
+                        <td colspan="2"><b>75%</b></td>
+                        <td colspan="2"><b>100%</b></td>
+                        
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Calories</td>
+                        <td>Grams</td>
+                        <td>Calories</td>
+                        <td>Grams</td>
+                        <td>Calories</td>
+                        <td>Grams</td>
+                    </tr>
+                    <tr>
+                        <td>Total Calories</td>
+                        <td>{{rec_diet[0].cal}}</td>
+                        <td></td>
+                        <td>{{rec_diet[1].cal}}</td>
+                        <td></td>
+                        <td>{{rec_diet[2].cal}}</td>
+                        <td></td>
+                                      
+                    </tr>
+                    <tr>
+                        <td>Protein</td>
+                        <td>{{rec_diet[0].protein}}</td>
+                        <td>{{rec_diet[0].protein_g}}</td>
+                        <td>{{rec_diet[1].protein}}</td>
+                        <td>{{rec_diet[1].protein_g}}</td>
+                        <td>{{rec_diet[2].protein}}</td>
+                        <td>{{rec_diet[2].protein_g}}</td>
+                                 
+                    </tr>
+                    <tr>
+                        <td>Carbohydrate</td>
+                        <td>{{rec_diet[0].ch}}</td>
+                        <td>{{rec_diet[0].ch_g}}</td>
+                        <td>{{rec_diet[1].ch}}</td>
+                        <td>{{rec_diet[1].ch_g}}</td>
+                        <td>{{rec_diet[2].ch}}</td>
+                        <td>{{rec_diet[2].ch_g}}</td>                
+                    </tr>
+                    <tr>
+                        <td>Fat</td>
+                        <td>{{rec_diet[0].fat}}</td>
+                        <td>{{rec_diet[0].fat_g}}</td>
+                        <td>{{rec_diet[1].fat}}</td>
+                        <td>{{rec_diet[1].fat_g}}</td>
+                        <td>{{rec_diet[2].fat}}</td>
+                        <td>{{rec_diet[2].fat_g}}</td>
+                                   
+                    </tr>
+          </tbody></table>  
+    
+    
+          </div></div>
+    
+        </div>
+    
+    

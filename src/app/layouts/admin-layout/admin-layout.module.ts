@@ -18,10 +18,13 @@ import { CalbankComponent } from '../../pages/calbank/calbank.component';
 import { CalbankrefComponent } from '../../pages/calbankref/calbankref.component';
 import { DietchartinComponent } from '../../pages/dietchartin/dietchartin.component';
 import { DietchartoutComponent } from '../../pages/dietchartout/dietchartout.component';
+import { BmicalcComponent } from '../../pages/bmicalc/bmicalc.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IgxExpansionPanelModule,IgxTabsModule } from 'igniteui-angular';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+
 
 @NgModule({
   imports: [
@@ -34,7 +37,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     IgxExpansionPanelModule,
     IgxTabsModule,
     AutocompleteLibModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    NguiAutoCompleteModule
+   
   ],
   declarations: [
     DashboardComponent,
@@ -49,7 +54,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     CalbankComponent,
     CalbankrefComponent,
     DietchartinComponent,
-    DietchartoutComponent
+    DietchartoutComponent,
+    BmicalcComponent
   ]
 })
 

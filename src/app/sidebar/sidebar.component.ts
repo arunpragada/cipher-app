@@ -13,7 +13,7 @@ export const ROUTES: RouteInfo[] = [
    // { path: '/dashboard',     title: 'Dashboard',         icon:'nc-bank',       class: '' },
    // { path: '/icons',         title: 'Icons',             icon:'nc-diamond',    class: '' },
    // { path: '/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' },
-    { path: '/notifications', title: 'BMI Calculations',     icon:'nc-bell-55',    class: '' },
+    { path: '/bmicalc', title: 'BMI Calculations',     icon:'nc-bell-55',    class: '' },
     { path: '/dietchartin',          title: 'Diet Chart Input',      icon:'nc-single-02',  class: '' },
     { path: '/dietchartout',          title: 'Diet Chart Output',      icon:'nc-single-02',  class: '' }
   //  { path: '/table',         title: 'Diet Chart Output',        icon:'nc-tile-56',    class: '' },

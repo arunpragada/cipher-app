@@ -45,11 +45,11 @@ ngOnInit() {
     usr_key:"0",
     association:[]
 });
-    fetch(Constants.API_ENDPOINT+'/admin_ctrl.php/getallusers')
+    fetch(Constants.API_ENDPOINT_1+'/admin_ctrl.php/getallusers')
       .then(result => result.json())
       .then(rowData => this.rowData = rowData);
       
-      fetch(Constants.API_ENDPOINT+'/admin_ctrl.php/getrolesforusers')
+      fetch(Constants.API_ENDPOINT_1+'/admin_ctrl.php/getrolesforusers')
       .then(result => result.json())
       .then(data => {this.rolesData = data
       // console.log("Modules "+JSON.stringify(data)); 
@@ -76,7 +76,7 @@ ngOnInit() {
       if(x.checked==1)
           x.checked=0;
       });
-    this.http.get(Constants.API_ENDPOINT+"/admin_ctrl.php/getuserroles?ukey="+event.data.usr_key).subscribe(
+    this.http.get(Constants.API_ENDPOINT_1+"/admin_ctrl.php/getuserroles?ukey="+event.data.usr_key).subscribe(
         (t) => {//console.log("From Role Modules "+JSON.stringify(t));
       /*  const arr: any[] = Object.values(t);
         for(let d of arr){
@@ -106,7 +106,7 @@ ngOnInit() {
     
     var postData = 'myData=' + JSON.stringify(this.appForm.value);
     const options = {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}};
-this.http.post(Constants.API_ENDPOINT+"/admin_ctrl.php/adduser", postData, options).subscribe(
+this.http.post(Constants.API_ENDPOINT_1+"/admin_ctrl.php/adduser", postData, options).subscribe(
     (t) => {console.log(t);
       if(this.buttonText=="Add"){
       this.formControls.usr_key.setValue(t);

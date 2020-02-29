@@ -1,7 +1,7 @@
 .navbar{
     padding-top: $navbar-padding-base;
     padding-bottom: $navbar-padding-base;
-    min-height: 53px;
+    min-height: 38px;
     margin-bottom: 20px;
 
     a{
@@ -217,7 +217,7 @@
     }
 
     &.navbar-transparent{
-      background-color: $transparent-bg !important;
+      background-color: rgba(236, 205, 205, 0.52);
       box-shadow: none;
       border-bottom: 1px solid #ddd;
 
@@ -331,6 +331,7 @@
                     color: #fff;
                     padding: 10px;
                     display: block;
+					padding-left: 43px;
                 }
             }
         }

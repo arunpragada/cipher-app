@@ -36,7 +36,7 @@ ngOnInit() {
     operation_type:"",
     module_key:"0"
 });
-    fetch(Constants.API_ENDPOINT+'/admin_ctrl.php/getallmodules')
+    fetch(Constants.API_ENDPOINT_1+'/admin_ctrl.php/getallmodules')
       .then(result => result.json())
       .then(rowData => this.rowData = rowData);     
   }
@@ -66,7 +66,7 @@ ngOnInit() {
     
     var postData = 'myData=' + JSON.stringify(this.appForm.value);
     const options = {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}};
-this.http.post(Constants.API_ENDPOINT+"/admin_ctrl.php/addmodule", postData, options).subscribe(
+this.http.post(Constants.API_ENDPOINT_1+"/admin_ctrl.php/addmodule", postData, options).subscribe(
     (t) => {console.log(t);
       if(this.buttonText=="Add"){
       this.formControls.module_key.setValue(t);

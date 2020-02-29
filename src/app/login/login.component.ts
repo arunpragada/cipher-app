@@ -41,7 +41,7 @@ this.http.post(Constants.API_ENDPOINT_1+"/admin_ctrl.php/checkuser", postData, o
          console.log('Login success==')
         localStorage.setItem('isLoggedin', 'true');
         localStorage.setItem('userData',JSON.stringify(this.res))
-        this.router.navigate(['/notifications']);
+        this.router.navigate(['/bmicalc']);
     }else{
         console.log('Login Fail==')
         this.message="User/Password Wrong.";

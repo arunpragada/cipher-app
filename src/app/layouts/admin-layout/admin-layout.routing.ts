@@ -12,6 +12,7 @@ import { CalbankComponent } from '../../pages/calbank/calbank.component';
 import { CalbankrefComponent } from '../../pages/calbankref/calbankref.component';
 import { DietchartinComponent } from 'app/pages/dietchartin/dietchartin.component';
 import { DietchartoutComponent } from 'app/pages/dietchartout/dietchartout.component';
+import { BmicalcComponent } from '../../pages/bmicalc/bmicalc.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -26,6 +27,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'calbank',        component: CalbankComponent},
     { path: 'calbankref',     component: CalbankrefComponent},
     { path: 'dietchartin',     component: DietchartinComponent},
-    { path: 'dietchartout',     component: DietchartoutComponent}
+    { path: 'dietchartout',     component: DietchartoutComponent},
+    { path: 'bmicalc', component: BmicalcComponent}
    
 ];

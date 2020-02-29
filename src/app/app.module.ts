@@ -20,12 +20,16 @@ import { AuthGuard } from './shared/guard';
 import { AgGridModule } from 'ag-grid-angular';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+
 //I keep the new line
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     LoginComponent
+    
+    
   ],
   imports: [
     BrowserAnimationsModule,
@@ -42,8 +46,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     HttpClientModule,
     AgGridModule.withComponents([]),
     AutocompleteLibModule,
-    NgMultiSelectDropDownModule.forRoot()
-  ],
+    NgMultiSelectDropDownModule.forRoot(),
+    NguiAutoCompleteModule
+    ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
