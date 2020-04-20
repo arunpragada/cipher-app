@@ -17,6 +17,8 @@ export class AppusersComponent implements OnInit {
   private gridApi;
   rolesData: any[];
   quickSearchValue: string ="";
+  delshow:boolean =false
+  rowIndex=0;
   columnDefs = [
     {headerName: 'Email', field: 'usr_email'},
     {headerName: 'Password', field: 'password'},
@@ -60,7 +62,9 @@ ngOnInit() {
   get formControls() { return this.appForm.controls; }
 
   onRowClicked(event: any) { 
+    this.delshow=true;
     this.showModuleDiv=true;
+    this.rowIndex=event.rowIndex
     this.formControls.usr_email.setValue(event.data.usr_email);
     this.formControls.password.setValue(event.data.password);
     this.formControls.usr_status.setValue(event.data.usr_status);
@@ -78,13 +82,13 @@ ngOnInit() {
       });
     this.http.get(Constants.API_ENDPOINT_1+"/admin_ctrl.php/getuserroles?ukey="+event.data.usr_key).subscribe(
         (t) => {//console.log("From Role Modules "+JSON.stringify(t));
-      /*  const arr: any[] = Object.values(t);
+        const arr: any[] = Object.values(t);
         for(let d of arr){
           console.log("Each 11"+JSON.stringify(d));
           
             this.rolesData.filter(x=>x.role_key==d.role_key)[0].checked=1;
           
-        }*/
+        }
         //console.log("Refresh "+JSON.stringify(this.modulesData))
         }
     );
@@ -131,6 +135,7 @@ alert(this.buttonText+" Operation Success..");
   }
   enableModuleDiv(){
     this.showModuleDiv=true;
+    this.delshow=false;
 this.formControls.usr_email.setValue("");
 this.formControls.first_name.setValue("");
 this.formControls.last_name.setValue("");
@@ -156,5 +161,24 @@ this.buttonClass="btn btn-success";
   onQuickFilterChanged() {
     this.gridApi.setQuickFilter(this.quickSearchValue);
 }
-
+deleteData(){
+  console.log("Data is "+JSON.stringify(this.appForm.value));
+  if(confirm('Are You Sure Want to Delete User '+this.appForm.get("first_name").value)){
+    console.log('In Delete Mode ');
+    this.formControls.operation_type.setValue("delete");
+    var delData={};
+    delData["usr_key"]=this.appForm.get("usr_key").value;
+    delData["usr_email"]=this.appForm.get("usr_email").value;
+    var postData = 'myData=' + JSON.stringify(delData);
+    const options = {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}};
+    this.http.post(Constants.API_ENDPOINT_1+"/CommonCtrl.php/deluser", postData, options).subscribe(
+      (t) => {
+        alert('Data Deletion Success');
+        this.rowData[this.rowIndex]=this.appForm.value;
+        this.rowData.splice(this.rowIndex, 1);
+    this.gridApi.setRowData(this.rowData);
+    this.showModuleDiv=false;
+      });
+  }
+}
 }

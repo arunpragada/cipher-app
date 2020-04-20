@@ -1,5 +1,5 @@
-table {
-    *border-collapse: collapse; /* IE7 and lower */
+/*table {
+  
     border-spacing: 0;
     background-color:#FFFFFF;
   }
@@ -28,3 +28,19 @@ font-size: 0.8571em;
     border-radius: 13px; 
     border-spacing: 0;
     }
+*/
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+  padding: 3px 3px;
+    vertical-align: middle; 
+}
+.table1 > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+  padding: 2px 2px;
+    vertical-align: middle; 
+}
+.table-bordered td,th {
+    border: 1px solid;
+    
+    border-color: darkmagenta;}
+    .table-bordered {
+    border: 1px solid;
+    border-color: darkgray;}

@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit{
     private nativeElement: Node;
     private toggleButton;
     private sidebarVisible: boolean;
+    public user:string;
 
     public isCollapsed = true;
     @ViewChild("navbar-cmp", {static: false}) button;
@@ -32,6 +33,10 @@ export class NavbarComponent implements OnInit{
         this.router.events.subscribe((event) => {
           this.sidebarClose();
        });
+       let ud=JSON.parse(localStorage.getItem('userData'))
+      // console.log("VV"+JSON.stringify(ud))
+       this.user=ud.name;
+
     }
     getTitle(){
       var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -42,6 +47,13 @@ export class NavbarComponent implements OnInit{
           if(this.listTitles[item].path === titlee){
               return this.listTitles[item].title;
           }
+          else if(titlee === "/apppages")
+            return 'MODULES';
+            else if(titlee === "/approles")
+            return 'ROLES';
+            else if(titlee === "/appusers")
+            return 'USERS';
+            
          else  if(titlee === "/apppages" || titlee === "/approles" || titlee === "/appusers")
             return titlee.replace("/","");
         else if(titlee === "/calbank")
@@ -105,6 +117,21 @@ export class NavbarComponent implements OnInit{
         localStorage.removeItem('userData');
         this.router.navigate(['/login']);
     }
-
+    clearSessionData(){
+      
+      if(confirm('Are You Sure Want to Clear Session Data ')){
+      
+      sessionStorage.removeItem('bmidata')
+sessionStorage.removeItem('recdata')
+sessionStorage.removeItem('diet')
+sessionStorage.removeItem('summary')
+sessionStorage.removeItem('advices')
+sessionStorage.removeItem('fta')
+sessionStorage.removeItem('pa')
+sessionStorage.removeItem('note')
+sessionStorage.removeItem('finalnote')
+location.reload()
+    }
+  }
 
 }

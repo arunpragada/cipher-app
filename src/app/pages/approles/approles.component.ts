@@ -17,7 +17,8 @@ export class ApprolesComponent implements OnInit {
   buttonClass="btn btn-success";
   private gridApi;
   modulesData: any[];
-
+  delshow:boolean =false
+  rowIndex=0;
   columnDefs = [
     {headerName: 'Role Name', field: 'role_name'},
     {headerName: 'Notes', field: 'support_notes'},
@@ -52,7 +53,9 @@ ngOnInit() {
   get formControls() { return this.appForm.controls; }
 
   onRowClicked(event: any) { 
+    this.delshow=true;
     this.showModuleDiv=true;
+    this.rowIndex=event.rowIndex
     this.formControls.role_name.setValue(event.data.role_name);
     this.formControls.support_notes.setValue(event.data.support_notes);
     this.formControls.role_key.setValue(event.data.role_key);
@@ -65,13 +68,13 @@ ngOnInit() {
       });
     this.http.get(Constants.API_ENDPOINT_1+"/admin_ctrl.php/getrolemodules?rkey="+event.data.role_key).subscribe(
         (t) => {//console.log("From Role Modules "+JSON.stringify(t));
-      /*  const arr: any[] = Object.values(t);
+        const arr: any[] = Object.values(t);
         for(let d of arr){
           console.log("Each 11"+JSON.stringify(d));
           
             this.modulesData.filter(x=>x.module_key==d.module_key)[0].checked=1;
           
-        }*/
+        }
         //console.log("Refresh "+JSON.stringify(this.modulesData))
         }
     );
@@ -113,6 +116,7 @@ alert(this.buttonText+" Operation Success..");
   }
   enableModuleDiv(){
     this.showModuleDiv=true;
+    this.delshow=false;
 this.formControls.role_name.setValue("");
 this.formControls.support_notes.setValue("");
 this.modulesData.filter(x=>{
@@ -134,4 +138,26 @@ this.buttonClass="btn btn-success";
     this.gridApi.setQuickFilter(this.quickSearchValue);
 }
 
+
+
+deleteData(){
+  console.log("Data is "+JSON.stringify(this.appForm.value));
+  if(confirm('Are You Sure Want to Delete Role '+this.appForm.get("role_name").value)){
+    console.log('In Delete Mode ');
+    this.formControls.operation_type.setValue("delete");
+    var delData={};
+    delData["role_key"]=this.appForm.get("role_key").value;
+    delData["role_name"]=this.appForm.get("role_name").value;
+    var postData = 'myData=' + JSON.stringify(delData);
+    const options = {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}};
+    this.http.post(Constants.API_ENDPOINT_1+"/CommonCtrl.php/delrole", postData, options).subscribe(
+      (t) => {
+        alert('Data Deletion Success');
+        this.rowData[this.rowIndex]=this.appForm.value;
+        this.rowData.splice(this.rowIndex, 1);
+    this.gridApi.setRowData(this.rowData);
+    this.showModuleDiv=false;
+      });
+  }
+}
 }

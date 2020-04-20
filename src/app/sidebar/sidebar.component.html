@@ -1,5 +1,5 @@
 
-<div class="sidebar-wrapper">
+<div class="sidebar-wrapper" style="padding-bottom: 0px;">
   <div class="logo">
     <a href="http://www.creative-tim.com" class="simple-text logo-mini">
       <div class="logo-image-small">
@@ -11,8 +11,7 @@
     </a>
   </div>
 
-
-  <div class="nested-menu">
+  <div class="nested-menu" *ngIf="um">
       <ul class="nav">
           <li> <a (click)="addExpandClass('pages')">
         <i class="fa fa-plus"></i><p>User Management</p>
@@ -20,19 +19,19 @@
     <li class="nested" [class.expand]="showMenu === 'pages'">
         <ul class="submenu">
             <li routerLinkActive="active" class=''>
-                <a routerLink="/appusers" >
+                <a routerLink="/appusers" style="padding-top: 0px;padding-bottom: 0px;">
                     <i class="fa fa-monument"></i>&nbsp;
                     <span>&nbsp;Users</span>
                 </a>
             </li>
             <li routerLinkActive="active" class=''>
-                <a routerLink="/approles" >
+                <a routerLink="/approles" style="padding-top: 0px;padding-bottom: 0px;">
                     <i class="fa fa-monument"></i>&nbsp;
                     <span>&nbsp;Roles</span>
                 </a>
             </li>
             <li routerLinkActive="active" class=''>
-                <a routerLink="/apppages" >
+                <a routerLink="/apppages" style="padding-top: 0px;padding-bottom: 0px;">
                     <i class="fa fa-monument"></i>&nbsp;
                     <span>&nbsp;Modules</span>
                 </a>
@@ -44,7 +43,7 @@
 
     <ul class="nav">
         <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">
-            <a [routerLink]="[menuItem.path]">
+            <a [routerLink]="[menuItem.path]" *ngIf="menuItem.show">
                 <i class="nc-icon {{menuItem.icon}}"></i>
                 <p>{{menuItem.title}}</p>
             </a>
@@ -53,7 +52,7 @@
 
     
 
-    <div class="nested-menu">
+    <div class="nested-menu" *ngIf="md">
         <ul class="nav">
             <li> <a (click)="addExpandClass('pages1')">
           <i class="fa fa-plus"></i><p>Master Data</p>
@@ -61,13 +60,13 @@
       <li class="nested" [class.expand]="showMenu === 'pages1'">
           <ul class="submenu">
               <li routerLinkActive="active" class=''>
-                  <a routerLink="/calbank" >
+                  <a routerLink="/calbank" style="padding-top: 0px;padding-bottom: 0px;">
                       <i class="fa fa-monument"></i>&nbsp;
                       <span>&nbsp;Calorie Bank</span>
                   </a>
               </li>
               <li routerLinkActive="active" class=''>
-                  <a routerLink="/calbankref" >
+                  <a routerLink="/calbankref" style="padding-top: 0px;padding-bottom: 0px;">
                       <i class="fa fa-monument"></i>&nbsp;
                       <span>&nbsp;References</span>
                   </a>

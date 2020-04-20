@@ -1,7 +1,7 @@
 <style>
 
     input{border:0px solid #000; margin:0; background:transparent; width:100%}
-    table tr td{border-right:1px solid #000; border-bottom:1px solid #000;}
+  /*  table tr td{border-right:1px solid #000; border-bottom:1px solid #000;}
     table{background: #fff none repeat scroll 0 0;
         border-left: 1px solid #000;
         border-top: 1px solid #000;}
@@ -12,11 +12,66 @@
         .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
         padding: 0px;
         vertical-align: middle;    
-    }
-   input { line-height: 25px;}
+    }*/
+    
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+  padding: 3px 3px;
+    vertical-align: middle; 
+}
+.table1 > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+  padding: 2px 2px;
+    vertical-align: middle; 
+}
+.table-bordered td,th {
+    border: 1px solid;
+    border-color: darkmagenta;}
+    .table-bordered {
+    border: 1px solid;
+    border-color: darkgray;}
+  input { line-height: 22px;}
    
     </style>
     
+<div class="row">
+  <div class="col-md-5">
+    <div class="card" style="background-color:#f4f3ef;border-radius: 0px;box-shadow: none;">
+<table  class="table table-bordered" style="background-color: #FFFFFF;"><tbody>
+<tr style="font-weight: 600;"><td></td><td>Protein</td><td>C.H.</td><td>Fat</td><td>Tot K.Cal</td><td>Ref. Cal</td></tr>
+<tr ><td>Option 1</td><td>{{summary["spp1"]}}</td><td>{{summary["schp1"]}}</td><td>{{summary["sfp1"]}}</td><td>{{summary["stk1"]}}</td><td>{{summary["sr1"]}}</td></tr>
+<tr ><td>Option 2</td><td>{{summary["spp2"]}}</td><td>{{summary["schp2"]}}</td><td>{{summary["sfp2"]}}</td><td>{{summary["stk2"]}}</td><td>{{summary["sr2"]}}</td></tr>
+<tr ><td>Option 3</td><td>{{summary["spp3"]}}</td><td>{{summary["schp3"]}}</td><td>{{summary["sfp3"]}}</td><td>{{summary["stk3"]}}</td><td>{{summary["sr3"]}}</td></tr>
+<tr ><td>Option 4</td><td>{{summary["spp4"]}}</td><td>{{summary["schp4"]}}</td><td>{{summary["sfp4"]}}</td><td>{{summary["stk4"]}}</td><td>{{summary["sr4"]}}</td></tr>
+<tr ><td>Option 5</td><td>{{summary["spp5"]}}</td><td>{{summary["schp5"]}}</td><td>{{summary["sfp5"]}}</td><td>{{summary["stk5"]}}</td><td>{{summary["sr5"]}}</td></tr>
+</tbody>
+</table>
+
+</div>
+</div>
+
+<div class="col-md-7">
+  <div class="card" style="background-color:#f4f3ef;border-radius: 0px;box-shadow: none;margin-bottom: 0px;">
+
+<table style="background-color:#FFFFFF;" class="table table-bordered"><tbody>
+  <tr style="font-weight: 600;"><td></td><td>Protein</td><td>C.H.</td><td>Fat</td></tr>
+  <tr><td >Option 1</td><td>{{summary["sp1"]}}</td><td>{{summary["sch1"]}}</td><td>{{summary["sf1"]}}</td></tr>
+  <tr><td style="border-top: hidden;">&nbsp;</td><td>{{summary["spm1"]}}</td><td>{{summary["schm1"]}}</td><td>{{summary["sfm1"]}}</td></tr>
+  <tr ><td >Option 2</td><td>{{summary["sp2"]}}</td><td>{{summary["sch2"]}}</td><td>{{summary["sf2"]}}</td></tr>
+  <tr ><td style="border-top: hidden;">&nbsp;</td><td>{{summary["spm2"]}}</td><td>{{summary["schm2"]}}</td><td>{{summary["sfm2"]}}</td></tr>
+  <tr ><td >Option 3</td><td>{{summary["sp3"]}}</td><td>{{summary["sch3"]}}</td><td>{{summary["sf3"]}}</td></tr>
+  <tr ><td style="border-top: hidden;">&nbsp;</td><td>{{summary["spm3"]}}</td><td>{{summary["schm3"]}}</td><td>{{summary["sfm3"]}}</td></tr>
+  <tr ><td >Option 4</td><td>{{summary["sp4"]}}</td><td>{{summary["sch4"]}}</td><td>{{summary["sf4"]}}</td></tr>
+  <tr ><td style="border-top: hidden;">&nbsp;</td><td>{{summary["spm4"]}}</td><td>{{summary["schm4"]}}</td><td>{{summary["sfm4"]}}</td></tr>
+  <tr ><td >Option 5</td><td>{{summary["sp5"]}}</td><td>{{summary["sch5"]}}</td><td>{{summary["sf5"]}}</td></tr>
+  <tr ><td style="border-top: hidden;">&nbsp;</td><td>{{summary["spm5"]}}</td><td>{{summary["schm5"]}}</td><td>{{summary["sfm5"]}}</td></tr>
+  </tbody>
+  </table>
+</div></div>
+
+
+
+</div>
+
     <div class="row">
       
       <div class="col-md-12">
@@ -35,10 +90,11 @@
 <igx-expansion-panel-body>
   <igx-tabs>
     <igx-tabs-group *ngFor="let dcOption of dietCharts.options; let j = index;"  label={{dcOption.opHeader}}>
-      <table class="table table-bordered">
+      <table class="table1 table-bordered">
         <tbody style="font-size: 12px">
-          <tr ng-if="j == 1">
-            <th style="width: 160px;">Food Type </th>
+          <tr ng-if="j == 1" style="background-color: #f7eaf1">
+            <th style="width: 160px;" colspan="2">Food Type </th>
+            
             <th colspan="4" style="text-align:center">Rcmd Qty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
             <th>Protein(g)</th>
             <th>C.H.(g)</th>
@@ -48,24 +104,27 @@
             <th>Total K.Cal</th>
           </tr>
           <tr  *ngFor="let opRow of dcOption.optionRows; let k = index;">
-<td>
+<td style="background-color:lightsteelblue;">
             <div class="ng-autocomplete" style="width: 160px;">
-            <input type="text"  [ngModel]='a.get("r"+r+"o"+j+"r"+k+"c11")'  list="dynmicUserIds"  (change)="onProductChanged($event,r,j,k)"/>
+            <input type="text"  style="font-weight: 600;" [ngModel]='a.get("r"+r+"o"+j+"r"+k+"c11")'  list="dynmicUserIds"  (change)="onProductChanged($event,r,j,k)"/>
 <datalist id="dynmicUserIds">
    <option *ngFor="let item of items">{{item.food_item}}</option>
 </datalist>
-            
-          
 
-       
            </div>
-          
+           
+          </td>
+          <td style="border-left-style: hidden;background-color: lightsteelblue;">
+       <span *ngIf='a.get("r"+r+"o"+j+"r"+k+"c11")!==undefined'>     
+<button type="button" class="close" aria-label="Close" (click)="clearRow(r,j,k)">
+  <span aria-hidden="true">×</span>
+</button></span>
           </td>
 
-<td><input type="text" [ngModel]='a.get("r"+r+"o"+j+"r"+k+"c12")'/></td>
-<td><input type="text" [ngModel]='a.get("r"+r+"o"+j+"r"+k+"c13")' (change)="onRQChanged($event,r,j,k)"/></td>
+<td><input type="text" [ngModel]='a.get("r"+r+"o"+j+"r"+k+"c12")' readonly/></td>
+<td style="background-color:lightsteelblue;"><input type="text" style="font-weight: 600;" [ngModel]='a.get("r"+r+"o"+j+"r"+k+"c13")' (change)="onRQChanged($event,r,j,k)"/></td>
             <td *ngFor="let opCol of opRow.optionCols; let l = index;" [attr.rowspan]="opCol.rs">
-              <input type="text" [ngModel]='a.get("r"+r+"o"+j+"r"+k+"c"+l)' (ngModelChange)='a.set("r"+r+"o"+j+"r"+k+"c"+l, $event)'/>
+              <input type="text" [ngModel]='a.get("r"+r+"o"+j+"r"+k+"c"+l)' (ngModelChange)='a.set("r"+r+"o"+j+"r"+k+"c"+l, $event)' readonly/>
             </td>
             
            

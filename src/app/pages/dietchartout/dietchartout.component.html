@@ -1,1 +1,120 @@
-<p>dietchartout works!</p>
+<div class="row">
+    <div class="col-md-12">
+      <div class="card" style="color: black">
+        <form style="padding: 10px 10px 10px 10px;color:black"  class="form-group">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="inputEmail4" class="form-group col-md-10">&nbsp; </label> 
+              <label for="inputEmail4" class="form-group col-md-2">Date : {{myDate}}</label> 
+            </div>
+          </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4" class="form-group col-md-3">UMR</label>
+                <label for="inputPassword4" class="form-group col-md-5"><b>:&nbsp;{{bmiData.umr}}</b></label>
+              </div>
+            </div>
+              <div class="form-row">  
+              <div class="form-group col-md-6">
+                <label for="inputPassword4" class="form-group col-md-3">Patient Name</label>
+                <label for="inputPassword4" class="form-group col-md-5"><b>:&nbsp;{{bmiData.name}}</b></label>
+                
+              </div>
+              <div class="form-group col-md-5">
+                <label for="inputCity" class="form-group col-md-3">Age</label>
+                <label for="inputPassword4"><b>:&nbsp;{{bmiData.age}}</b></label>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputPassword4" class="form-group col-md-3">Weight</label>
+                <label for="inputPassword4" class="form-group col-md-3"><b>:&nbsp;{{bmiData.weight}}</b></label>
+              </div>
+              <div class="form-group col-md-5">
+                
+                <label for="inputState" class="form-group col-md-3">Gender</label>
+                <label for="inputPassword4"><b>:&nbsp;{{bmiData.gender}}</b></label>
+              </div>
+             
+             
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputPassword4" class="form-group col-md-3">Height(cm)</label>
+                <label for="inputPassword4" class="form-group col-md-3"><b>:&nbsp;{{bmiData.height}}</b></label>
+              </div>
+              <div class="form-group col-md-5">
+                <label for="inputPassword4" class="form-group col-md-3">BMI</label>
+                <label for="inputPassword4"><b>:&nbsp;{{bmiData.bmi_result}}</b></label>
+              </div>
+            </div>
+          
+<div>
+
+<table class="table table-bordered roundedCorners">
+    <tbody>
+        <tr>
+            <td style="padding:3px 6px 0px"><b>Time</b></td>
+            <td style="padding:3px 6px 0px;"><b>Menu</b></td>
+                           
+        </tr>
+        <tr *ngFor="let dct of dietChartTypes; let r = index;">
+            <td style="padding: 0px;white-space: nowrap;"><table style="border: 0;border-top: hidden;border-bottom: hidden;border-right: hidden;font-size: 12px;width: 100%;"><tr><td valign="top" style="border-right-color: white;border-left-color: white;border-bottom-color: white;"><b>{{dct.heading}}</b></td></tr><tr><td valign="top"style="border-right-color: white;border-left-color: white;"><b>{{dct.time}}</b></td></tr></table></td>
+            <td style="padding: 0px;"><table style="width: 100%;font-size: 12px;">
+                <tr *ngFor="let item of arrayOne(5); let i = index;"><td style="padding:3px 6px 0px;height: 21px;border-left-color: white;border-right-color: white;" [ngClass]="{'bClass': i == 0, 'bClass1': i == 4 }" >{{a.get("r"+r+"o"+i+"r0c11")}}<span *ngIf='a.get("r"+r+"o"+i+"r0c11")!==undefined && a.get("r"+r+"o"+i+"r0c11")!=""'>-</span>{{a.get("r"+r+"o"+i+"r0c1")}}<span *ngIf='a.get("r"+r+"o"+i+"r1c11")!==undefined && a.get("r"+r+"o"+i+"r1c11")!=""'>,</span>{{a.get("r"+r+"o"+i+"r1c11")}}<span *ngIf='a.get("r"+r+"o"+i+"r1c11")!==undefined && a.get("r"+r+"o"+i+"r1c11")!=""'>-</span>{{a.get("r"+r+"o"+i+"r1c1")}}<span *ngIf='a.get("r"+r+"o"+i+"r2c11")!==undefined && a.get("r"+r+"o"+i+"r2c11")!=""'>,</span>{{a.get("r"+r+"o"+i+"r2c11")}}<span *ngIf='a.get("r"+r+"o"+i+"r2c11")!==undefined && a.get("r"+r+"o"+i+"r2c11")!=""'>-</span>{{a.get("r"+r+"o"+i+"r2c1")}}<span *ngIf='a.get("r"+r+"o"+i+"r3c11")!==undefined && a.get("r"+r+"o"+i+"r3c11")!=""'>,</span>{{a.get("r"+r+"o"+i+"r3c11")}}<span *ngIf='a.get("r"+r+"o"+i+"r3c11")!==undefined && a.get("r"+r+"o"+i+"r3c11")!=""'>-</span>{{a.get("r"+r+"o"+i+"r3c1")}}<span *ngIf='a.get("r"+r+"o"+i+"r4c11")!==undefined && a.get("r"+r+"o"+i+"r4c11")!=""'>,</span>{{a.get("r"+r+"o"+i+"r4c11")}}<span *ngIf='a.get("r"+r+"o"+i+"r4c11")!==undefined && a.get("r"+r+"o"+i+"r4c11")!=""'>-</span>{{a.get("r"+r+"o"+i+"r4c1")}}</td></tr>
+               
+            </table></td>    
+
+
+        </tr>
+        <tr>
+          <td><b>Note</b>   </td>
+          <td style="padding-top: 0;padding-bottom: 0;">
+            <textarea [(ngModel)]="note" [ngModelOptions]="{standalone: true}" rows="3" cols="80" style="border: none;">
+
+            </textarea>
+        </tr>
+    </tbody>
+</table>
+<table style="width: 100%;"><tr><td>&nbsp;</td></tr></table>
+<table style="width: 100%;">
+<tr><td style="text-align: center;"><b>DIET ADVICE</b></td></tr>
+<tr *ngFor="let item of arrayOne(18); let i = index;"><td><input type="text" style="width:900px;border: none;" [(ngModel)]='advice["ad"+(i+1)]' [ngModelOptions]="{standalone: true}"/></td></tr>
+
+</table>
+
+<table style="width: 100%;"><tr><td>&nbsp;</td></tr></table>
+
+<table style="width: 100%;">
+  <tr><td style="text-align: center;"><b>FOOD TO BE AVOIDED</b></td></tr>
+  <tr *ngFor="let item of arrayOne(8); let i = index;"><td><input type="text" style="width:900px;border: none;" [(ngModel)]='fta["fta"+(i+1)]' [ngModelOptions]="{standalone: true}"/></td></tr>
+  
+  </table>
+  <table style="width: 100%;"><tr><td>&nbsp;</td></tr></table>
+
+  <table style="width: 100%;">
+    <tr><td style="text-align: center;"><b>PHYSICAL ACTIVITY</b></td></tr>
+    <tr *ngFor="let item of arrayOne(6); let i = index;"><td><input type="text" style="width:900px;border: none;" [(ngModel)]='pa["pa"+(i+1)]' [ngModelOptions]="{standalone: true}"/></td></tr>
+    
+    </table>
+    <table style="width: 100%;">
+    <tr>
+      <td style="vertical-align: top;"><b>Note:</b>   </td>
+      <td style="padding-top: 0;padding-bottom: 0;">
+        <textarea [(ngModel)]="finalnote" [ngModelOptions]="{standalone: true}" rows="3" cols="90" style="border: none;">
+
+        </textarea>
+    </tr></table>
+    <table style="width: 100%;"><tr><td>&nbsp;</td></tr></table>
+    <table style="width: 100%;">
+    <tr><td style="text-align: right;">
+      <button type="submit" class="btn btn-primary" (click)="saveData()">Save</button>&nbsp;&nbsp;
+      <button type="submit" class="btn btn-primary" (click)="printData()">Download</button>
+    </td></tr>
+    </table>
+                </div>
+          </form>
+
+</div>
+</div></div>  

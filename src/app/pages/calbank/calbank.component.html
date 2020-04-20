@@ -35,7 +35,15 @@
           
         <div class="form-group row"><label for="inputEmail4" class="col-sm-2">Food Item</label> 
             <div class="col-sm-4"> <input class="form-control" type="moduleName" placeholder="" formControlName="food_item"></div>
-            </div>
+           
+            <div class="col-sm-6" style="text-align: end;" *ngIf="delshow">
+              <button type="button" class="btn-danger" (click)="deleteData()">
+                       Delete
+                    </button>
+         
+                  </div>
+          
+          </div>
             <div class="form-group row"><label for="inputEmail4" class="col-sm-2">Quantity</label> 
                 <div class="col-sm-2">    <input class="form-control" type="supportNotes" placeholder="" formControlName="quantity"></div>
                 <div class="col-sm-2"> 
@@ -107,14 +115,14 @@
             <div class="form-group row"><label for="inputEmail5" class="col-sm-2">Ref Item?</label> 
               
                 <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" id="defaultInline3" formControlName="is_ref_y">
+                        <input type="checkbox" class="custom-control-input" id="defaultInline3" (click)="cclick('y')" name="abc" formControlName="is_ref_y">
                         <label class="custom-control-label" for="defaultInline3">Yes</label>
                       </div>
                       
                       <!-- Default inline 2-->
                       <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" id="defaultInline4" formControlName="is_ref_n">
-                        <label class="custom-control-label" for="defaultInline4">No</label>
+                        <input type="checkbox" class="custom-control-input" id="defaultInline4" (click)="cclick('n')" name="abc" formControlName="is_ref_n">
+                        <label class="custom-control-label" for="defaultInline4" >No</label>
                       </div>
                                       
             </div>

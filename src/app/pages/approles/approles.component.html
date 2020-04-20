@@ -35,7 +35,14 @@
           
         <div class="form-group row"><label for="inputEmail4" class="col-sm-2">Role Name</label> 
             <div class="col-sm-4"> <input class="form-control" type="moduleName" placeholder="" formControlName="role_name"></div>
-            </div>
+            <div class="col-sm-6" style="text-align: end;" *ngIf="delshow">
+              <button type="button" class="btn-danger" (click)="deleteData()">
+                       Delete
+                    </button>
+         
+                  </div> 
+          
+          </div>
             <div class="form-group row"><label for="inputEmail4" class="col-sm-2">Support Notes</label> 
                 <div class="col-sm-4">    <input class="form-control" type="supportNotes" placeholder="" formControlName="support_notes"></div>
             </div>

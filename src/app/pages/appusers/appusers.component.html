@@ -41,7 +41,13 @@
             
             <label for="inputEmail4" class="col-sm-2">Password</label> 
             <div class="col-sm-3"> <input class="form-control"  placeholder="" formControlName="password"></div>
-            </div>
+            <div class="col-sm-2" style="text-align: end;" *ngIf="delshow">
+              <button type="button" class="btn-danger" (click)="deleteData()">
+                       Delete
+                    </button>
+         
+                  </div>  
+          </div>
             <div class="form-group row"><label for="inputEmail4" class="col-sm-2">First Name</label> 
               <div class="col-sm-3">    <input class="form-control"  placeholder="" formControlName="first_name"></div>
           

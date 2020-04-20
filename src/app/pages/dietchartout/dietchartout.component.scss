@@ -1,0 +1,21 @@
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 3px 3px;
+      vertical-align: middle; 
+  }
+ 
+  .table-bordered td,th {
+      border: 1px solid;
+      border-color: darkmagenta;}
+      .table-bordered {
+      border: 1px solid;
+      border-color: darkgray;}
+    input { line-height: 22px;}
+
+    .bClass{
+        border-top-color: white !important;
+        border-right-color: white !important;
+        border-left-color: white !important;
+    }
+    .bClass1{
+        border-bottom-color: white !important;
+    }

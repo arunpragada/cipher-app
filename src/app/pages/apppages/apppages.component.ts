@@ -76,6 +76,7 @@ this.http.post(Constants.API_ENDPOINT_1+"/admin_ctrl.php/addmodule", postData, o
     }else if(this.buttonText=="Update"){
      // this.gridApi.getSelectedRows()[0]=this.appModuleForm.value;
       this.gridApi.getSelectedRows()[0].module_name=this.appForm.get("module_name").value;
+      this.gridApi.getSelectedRows()[0].support_notes=this.appForm.get("support_notes").value;
       this.gridApi.setRowData(this.rowData);
     }
     }

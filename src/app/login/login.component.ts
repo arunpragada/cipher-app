@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 this.http.post(Constants.API_ENDPOINT_1+"/admin_ctrl.php/checkuser", postData, options).subscribe(
     (t) => {console.log(t);
         this.res=t;
-        console.log("Val="+this.res)
+        //console.log("Val="+this.res)
     if(this.res.operation === "Y"){
          console.log('Login success==')
         localStorage.setItem('isLoggedin', 'true');

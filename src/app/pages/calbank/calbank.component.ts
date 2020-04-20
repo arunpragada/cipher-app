@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {Constants } from '../../constants/constants';
+import * as alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-calbank',
@@ -17,6 +18,7 @@ export class CalbankComponent implements OnInit {
   buttonClass="btn btn-success";
   private gridApi;
   rowIndex=0;
+  delshow:boolean =false
   
   columnDefs = [
     {headerName: 'Food Item', field: 'food_item'},
@@ -35,7 +37,7 @@ export class CalbankComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,private http: HttpClient) { }
 
   ngOnInit() {
-    console.log("In INIT Func "+Constants.API_ENDPOINT_1)
+   // console.log("In INIT Func "+Constants.API_ENDPOINT_1)
     this.buttonText="Add";
     this.appForm  =  this.formBuilder.group({
       food_item: ['', Validators.required],
@@ -52,8 +54,8 @@ export class CalbankComponent implements OnInit {
       food_type: ['', Validators.required],
       location_preference_n: [0, Validators.required],
       location_preference_s: [0, Validators.required],
-      is_ref_n:[0, Validators.required],
-      is_ref_y: [0, Validators.required],
+      is_ref_n:[false, Validators.required],
+      is_ref_y: [false, Validators.required],
       operation_type:"",
       id:"0",
       is_ref:0
@@ -71,15 +73,52 @@ export class CalbankComponent implements OnInit {
     this.gridApi = params.api; // To access the grids API
   }
   enableModuleDiv(){
+    this.delshow=false;
     this.showModuleDiv=true;
 this.buttonText="Add";
 this.buttonClass="btn btn-success";
 this.appForm.reset(this.appForm.value);
 this.appForm.reset();
+this.formControls.is_ref_y.setValue(false);
+this.formControls.is_ref_n.setValue(true);
+
   }
   quickSearchValue: string = '';
   onQuickFilterChanged() {
     this.gridApi.setQuickFilter(this.quickSearchValue);
+}
+cclick(val){
+  
+  if(val=='y'){
+    if(!this.appForm.get("is_ref_y").value)
+    this.formControls.is_ref_n.setValue(false);
+}
+  if(val=='n'){
+  if(!this.appForm.get("is_ref_n").value)
+  this.formControls.is_ref_y.setValue(false);
+}
+  
+}
+
+deleteData(){
+  //console.log("Data is "+JSON.stringify(this.appForm.value));
+  if(confirm('Are You Sure Want to Delete Food Item '+this.appForm.get("food_item").value)){
+   // console.log('In Delete Mode ');
+    this.formControls.operation_type.setValue("delete");
+    var delData={};
+    delData["id"]=this.appForm.get("id").value;
+    delData["food_item"]=this.appForm.get("food_item").value;
+    var postData = 'myData=' + JSON.stringify(delData);
+    const options = {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}};
+    this.http.post(Constants.API_ENDPOINT_1+"/CommonCtrl.php/delitem", postData, options).subscribe(
+      (t) => {
+        alertify.alert("Success","Deletion Operation Success..");
+        this.rowData[this.rowIndex]=this.appForm.value;
+        this.rowData.splice(this.rowIndex, 1);
+    this.gridApi.setRowData(this.rowData);
+    this.showModuleDiv=false;
+      });
+  }
 }
 
 addData(){
@@ -89,14 +128,21 @@ addData(){
   else if(this.buttonText=="Update")
   this.formControls.operation_type.setValue("update");
   
-  console.log("Data is "+JSON.stringify(this.appForm.value))
-  console.log("Data +"+this.formControls.is_ref_y)
+  //console.log("Data is "+JSON.stringify(this.appForm.value))
+  //console.log("Data +"+this.formControls.is_ref_y)
   if(this.appForm.get("is_ref_y").value)
   this.formControls.is_ref.setValue(1);
+  else
+  this.formControls.is_ref.setValue(0);
   if(this.appForm.get("location_preference_n").value)
   this.formControls.location_preference_n.setValue(1);
   if(this.appForm.get("location_preference_s").value)
   this.formControls.location_preference_s.setValue(1);
+  if(!this.appForm.get("location_preference_n").value)
+  this.formControls.location_preference_n.setValue(0);
+  if(!this.appForm.get("location_preference_s").value)
+  this.formControls.location_preference_s.setValue(0);
+  
   var postData = 'myData=' + JSON.stringify(this.appForm.value);
   const options = {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}};
 this.http.post(Constants.API_ENDPOINT_1+"/CommonCtrl.php/additem", postData, options).subscribe(
@@ -107,26 +153,28 @@ this.http.post(Constants.API_ENDPOINT_1+"/CommonCtrl.php/additem", postData, opt
     this.gridApi.setRowData(this.rowData);
     this.appForm.reset();
   }else if(this.buttonText=="Update"){
-    console.log("Row Index "+this.rowIndex)   
+   // console.log("Row Index "+this.rowIndex)   
     this.rowData[this.rowIndex]=this.appForm.value;
-    console.log("AA "+JSON.stringify(this.rowData[0]));
+   // console.log("AA "+JSON.stringify(this.rowData[0]));
   //  this.gridApi.getSelectedRows()[0].module_name=this.appForm.get("module_name").value;
     this.gridApi.setRowData(this.rowData);
   }
   }
 );
 
-alert(this.buttonText+" Operation Success..");
+//alert(this.buttonText+" Operation Success..");
+alertify.alert("Success",this.buttonText+" Operation Success..");
 
 }
 onRowClicked(event: any) { 
+  this.delshow=true;
   this.showModuleDiv=true;
   this.rowIndex=event.rowIndex;
   if(event.data.is_ref=="1"){
-  event.data.is_ref_y=1;
-  event.data.is_ref_n=0;}else{
-    event.data.is_ref_y=0;
-  event.data.is_ref_n=1;
+  event.data.is_ref_y=true;
+  event.data.is_ref_n=false;}else{
+    event.data.is_ref_y=false;
+  event.data.is_ref_n=true;
   }
  if(event.data.location_preference_n=="1")
  event.data.location_preference_n=1;
@@ -142,7 +190,7 @@ onRowClicked(event: any) {
   //this.formControls.module_name.setValue(event.data.module_name);
   //this.formControls.support_notes.setValue(event.data.support_notes);
  // this.formControls.module_key.setValue(event.data.module_key);
-  console.log('row', event);     
+ // console.log('row', event);     
   this.buttonText="Update";
   this.buttonClass="btn btn-info";
 }
