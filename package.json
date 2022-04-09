@@ -47,7 +47,7 @@
     "jquery": "3.4.1",
     "jszip": "^3.1.5",
     "minireset.css": "~0.0.4",
-    "moment": "2.24.0",
+    "moment": "2.29.2",
     "ng-editable-table": "^0.3.15",
     "ng-multiselect-dropdown": "^0.2.3",
     "ng2-completer": "^3.0.3",
